@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 
+const pagesBasePath = process.env.PAGES_BASE_PATH ?? "";
+
 const geist = Geist({
   variable: "--font-geist",
   subsets: ["latin"],
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
     "pain fabriqué en France",
   ],
   icons: {
-    icon: "/alepin-mark.svg",
+    icon: `${pagesBasePath}/alepin-mark.svg`,
   },
   openGraph: {
     title: "Alepin — Le pain du Levant",

@@ -2,6 +2,9 @@ import Image from "next/image";
 import SiteHeader from "./site-header";
 import styles from "./page.module.css";
 
+const pagesBasePath = process.env.PAGES_BASE_PATH ?? "";
+const assetPath = (path: string) => `${pagesBasePath}${path}`;
+
 const products = [
   {
     number: "01",
@@ -9,7 +12,7 @@ const products = [
     arabic: "خبز عربي",
     description:
       "Souple, léger et délicatement toasté. Le pain de tous les jours, pensé pour être garni, trempé ou partagé.",
-    image: "/images/pita-pocket.jpg",
+    image: assetPath("/images/pita-pocket.jpg"),
     alt: "Pains pita gonflés empilés sur un plateau",
     sizes: "(max-width: 640px) 82vw, (max-width: 1180px) 53vw, 43vw",
     className: styles.productLarge,
@@ -20,7 +23,7 @@ const products = [
     arabic: "خبز رقيق",
     description:
       "Une feuille tendre et aérienne, idéale pour les mezzés, les wraps et les grandes tablées.",
-    image: "/images/flatbread-fold.jpg",
+    image: assetPath("/images/flatbread-fold.jpg"),
     alt: "Pain plat fin plié sur une planche en bois",
     sizes: "(max-width: 640px) 82vw, (max-width: 1180px) 38vw, 25vw",
     className: styles.productTall,
@@ -31,14 +34,14 @@ const products = [
     arabic: "بالسمسم",
     description:
       "Une croûte dorée, des graines généreuses et ce parfum grillé qui appelle la première bouchée.",
-    image: "/images/seeded-bread.jpg",
+    image: assetPath("/images/seeded-bread.jpg"),
     alt: "Pains dorés couverts de graines",
     sizes: "(max-width: 640px) 82vw, (max-width: 1180px) 38vw, 25vw",
     className: styles.productWide,
   },
 ];
 
-const process = [
+const processSteps = [
   {
     number: "01",
     title: "Pétrir",
@@ -157,7 +160,7 @@ export default function Home() {
               <div className={styles.heroSun} aria-hidden="true" />
               <div className={styles.heroImageFrame}>
                 <Image
-                  src="/images/hero-flatbread.jpg"
+                  src={assetPath("/images/hero-flatbread.jpg")}
                   alt="Pains du Levant servis dans un plat en cuivre"
                   fill
                   preload
@@ -267,7 +270,7 @@ export default function Home() {
 
         <section className={styles.imageStatement} aria-label="Notre philosophie">
           <Image
-            src="/images/bread-basket.jpg"
+            src={assetPath("/images/bread-basket.jpg")}
             alt="Pain traditionnel disposé dans une corbeille en osier"
             fill
             sizes="100vw"
@@ -286,7 +289,7 @@ export default function Home() {
           <div className={styles.craftVisual}>
             <div className={styles.craftImage}>
               <Image
-                src="/images/dough-craft.jpg"
+                src={assetPath("/images/dough-craft.jpg")}
                 alt="Boulanger tenant une pâte fraîche entre ses mains"
                 fill
                 sizes="(max-width: 900px) 90vw, 44vw"
@@ -308,7 +311,7 @@ export default function Home() {
               texture légère et leur goût délicatement toasté.
             </p>
             <ol className={styles.processList}>
-              {process.map((step) => (
+              {processSteps.map((step) => (
                 <li key={step.number}>
                   <span>{step.number}</span>
                   <div><h3>{step.title}</h3><p>{step.text}</p></div>
