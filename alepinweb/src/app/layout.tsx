@@ -21,7 +21,9 @@ export const metadata: Metadata = {
     "pain fabriqué en France",
   ],
   icons: {
-    icon: `${pagesBasePath}/alepin-mark.svg`,
+    icon: `${pagesBasePath}/images/alepin-logo.png`,
+    shortcut: `${pagesBasePath}/images/alepin-logo.png`,
+    apple: `${pagesBasePath}/images/alepin-logo.png`,
   },
   openGraph: {
     title: "Alepin — Le pain du Levant",

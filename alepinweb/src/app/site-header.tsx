@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
 
@@ -10,25 +11,23 @@ const navItems = [
   { href: "#contact", label: "Contact" },
 ];
 
-function Logo() {
+function Logo({ src }: { src: string }) {
   return (
     <a className={styles.brand} href="#accueil" aria-label="Alepin, accueil">
-      <span className={styles.brandMark} aria-hidden="true">
-        <svg viewBox="0 0 52 52">
-          <path d="M11 42V24C11 14.6 17.7 7 26 7s15 7.6 15 17v18" />
-          <path d="M19 42V26c0-5.5 3.1-9.5 7-9.5s7 4 7 9.5v16" />
-          <path d="M7 42h38" />
-          <path d="M26 20v16M26 25l-4-4M26 29l5-5M26 33l-4-4" />
-        </svg>
-      </span>
-      <span className={styles.brandText}>
-        <strong>ALEPIN</strong><small>PAINS DU LEVANT</small>
-      </span>
+      <Image
+        className={styles.brandLogo}
+        src={src}
+        alt=""
+        width={2122}
+        height={2118}
+        loading="eager"
+        sizes="(max-width: 640px) 56px, 66px"
+      />
     </a>
   );
 }
 
-export default function SiteHeader() {
+export default function SiteHeader({ logoSrc }: { logoSrc: string }) {
   const [open, setOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -46,7 +45,7 @@ export default function SiteHeader() {
   return (
     <header className={styles.header}>
       <div className={styles.headerInner}>
-        <Logo />
+        <Logo src={logoSrc} />
         <nav className={styles.desktopNav} aria-label="Navigation principale">
           {navItems.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
         </nav>

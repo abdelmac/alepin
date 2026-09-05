@@ -88,18 +88,14 @@ function Brand() {
       className={styles.footerBrand}
       aria-label="Alepin, retour à l’accueil"
     >
-      <span className={styles.footerBrandMark} aria-hidden="true">
-        <svg viewBox="0 0 52 52">
-          <path d="M11 42V24C11 14.6 17.7 7 26 7s15 7.6 15 17v18" />
-          <path d="M19 42V26c0-5.5 3.1-9.5 7-9.5s7 4 7 9.5v16" />
-          <path d="M7 42h38" />
-          <path d="M26 20v16M26 25l-4-4M26 29l5-5M26 33l-4-4" />
-        </svg>
-      </span>
-      <span>
-        <strong>ALEPIN</strong>
-        <small>PAINS DU LEVANT</small>
-      </span>
+      <Image
+        className={styles.footerBrandLogo}
+        src={assetPath("/images/alepin-logo.png")}
+        alt=""
+        width={2122}
+        height={2118}
+        sizes="(max-width: 640px) 116px, 132px"
+      />
     </a>
   );
 }
@@ -117,7 +113,7 @@ export default function Home() {
         <a href="#contact">Pour les professionnels</a>
       </div>
 
-      <SiteHeader />
+      <SiteHeader logoSrc={assetPath("/images/alepin-logo.png")} />
 
       <main id="contenu">
         <section className={styles.hero} id="accueil">
