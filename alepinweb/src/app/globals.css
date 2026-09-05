@@ -1,13 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #101830;
-  --cream: #f4efe4;
+  --ink: #2c1813;
+  --cream: #fff8eb;
   --paper: #fbf8f1;
-  --copper: #ad5234;
-  --gold: #c59a4a;
-  --gold-ink: #85600f;
-  --sage: #7e8b72;
+  --copper: #c4170e;
+  --red-hover: #a8140d;
+  --red-deep: #831b16;
+  --gold: #9d780b;
+  --gold-ink: #765807;
+  --gold-light: #e9c45a;
+  --gold-on-red: #f6dfa2;
+  --sand: #f3e5cf;
+  --sage: #9a8560;
   --font-body: var(--font-geist), "Helvetica Neue", Arial, sans-serif;
   --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino,
     Georgia, serif;
@@ -55,7 +60,7 @@ svg {
 
 ::selection {
   background: var(--copper);
-  color: #fffaf0;
+  color: var(--cream);
 }
 
 :focus-visible {
