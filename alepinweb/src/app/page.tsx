@@ -22,7 +22,7 @@ const products = [
     name: "Le pain fin",
     arabic: "خبز رقيق",
     description:
-      "Une feuille tendre et aérienne, idéale pour les mezzés, les wraps et les grandes tablées.",
+      "Une feuille tendre et aérienne, idéale pour les wraps, les sandwichs roulés et les grandes tablées.",
     image: assetPath("/images/flatbread-fold.jpg"),
     alt: "Pain plat fin plié sur une planche en bois",
     sizes: "(max-width: 640px) 82vw, (max-width: 1180px) 38vw, 25vw",
@@ -195,7 +195,7 @@ export default function Home() {
             <span>Pain pita</span><i>✦</i>
             <span>Mana’eesh</span><i>✦</i>
             <span>Kaak</span><i>✦</i>
-            <span>Mezzés</span><i>✦</i>
+            <span>Maarouk</span><i>✦</i>
             <span>Douceurs d’Orient</span>
           </div>
         </div>
