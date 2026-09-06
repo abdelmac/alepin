@@ -2,18 +2,12 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { localeOptions, type Locale, type SiteCopy } from "./i18n";
 import styles from "./page.module.css";
 
-const navItems = [
-  { href: "#nos-pains", label: "Nos pains" },
-  { href: "#notre-histoire", label: "Notre histoire" },
-  { href: "#savoir-faire", label: "Savoir-faire" },
-  { href: "#contact", label: "Contact" },
-];
-
-function Logo({ src }: { src: string }) {
+function Logo({ src, label }: { src: string; label: string }) {
   return (
-    <a className={styles.brand} href="#accueil" aria-label="Alepin, accueil">
+    <a className={styles.brand} href="#accueil" aria-label={label}>
       <Image
         className={styles.brandLogo}
         src={src}
@@ -27,9 +21,27 @@ function Logo({ src }: { src: string }) {
   );
 }
 
-export default function SiteHeader({ logoSrc }: { logoSrc: string }) {
+type SiteHeaderProps = {
+  logoSrc: string;
+  locale: Locale;
+  copy: SiteCopy["header"];
+  onLocaleChange: (locale: Locale) => void;
+};
+
+export default function SiteHeader({
+  logoSrc,
+  locale,
+  copy,
+  onLocaleChange,
+}: SiteHeaderProps) {
   const [open, setOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const navItems = [
+    { href: "#nos-pains", label: copy.nav.breads },
+    { href: "#notre-histoire", label: copy.nav.story },
+    { href: "#savoir-faire", label: copy.nav.craft },
+    { href: "#contact", label: copy.nav.contact },
+  ];
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -45,13 +57,39 @@ export default function SiteHeader({ logoSrc }: { logoSrc: string }) {
   return (
     <header className={styles.header}>
       <div className={styles.headerInner}>
-        <Logo src={logoSrc} />
-        <nav className={styles.desktopNav} aria-label="Navigation principale">
+        <Logo src={logoSrc} label={copy.logoAria} />
+        <nav className={styles.desktopNav} aria-label={copy.mainNavAria}>
           {navItems.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
         </nav>
-        <a className={styles.headerCta} href="#contact">
-          Nous trouver <span aria-hidden="true">↗</span>
-        </a>
+        <div className={styles.headerActions}>
+          <a className={styles.headerCta} href="#contact">
+            {copy.findUs} <span aria-hidden="true">↗</span>
+          </a>
+          <label className={styles.languagePicker}>
+            <span className={styles.srOnly}>{copy.languageSelector}</span>
+            <select
+              className={styles.languageSelect}
+              value={locale}
+              onChange={(event) => {
+                setOpen(false);
+                onLocaleChange(event.target.value as Locale);
+              }}
+              dir="ltr"
+            >
+              {localeOptions.map((option) => (
+                <option
+                  key={option.value}
+                  value={option.value}
+                  lang={option.value}
+                  dir={option.value === "ar" ? "rtl" : "ltr"}
+                >
+                  {option.label}
+                </option>
+              ))}
+            </select>
+            <span className={styles.languageChevron} aria-hidden="true">⌄</span>
+          </label>
+        </div>
         <button
           ref={menuButtonRef}
           className={`${styles.menuButton} ${open ? styles.menuButtonOpen : ""}`}
@@ -59,7 +97,7 @@ export default function SiteHeader({ logoSrc }: { logoSrc: string }) {
           onClick={() => setOpen((current) => !current)}
           aria-expanded={open}
           aria-controls="mobile-navigation"
-          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-label={open ? copy.closeMenuAria : copy.openMenuAria}
         >
           <span /><span />
         </button>
@@ -69,14 +107,21 @@ export default function SiteHeader({ logoSrc }: { logoSrc: string }) {
         id="mobile-navigation"
         aria-hidden={!open}
       >
-        <nav aria-label="Navigation mobile">
+        <nav aria-label={copy.mobileNavAria}>
           {navItems.map((item, index) => (
-            <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={() => {
+                setOpen(false);
+                menuButtonRef.current?.focus();
+              }}
+            >
               <span>0{index + 1}</span>{item.label}
             </a>
           ))}
         </nav>
-        <p>Le pain du Levant, façonné en France.</p>
+        <p>{copy.mobileTagline}</p>
       </div>
     </header>
   );

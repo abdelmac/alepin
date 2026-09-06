@@ -7,7 +7,7 @@
 .skipLink {
   position: fixed;
   top: 12px;
-  left: 12px;
+  inset-inline-start: 12px;
   z-index: 9999;
   transform: translateY(-150%);
   border-radius: 999px;
@@ -21,6 +21,18 @@
 
 .skipLink:focus {
   transform: translateY(0);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .topBar {
@@ -138,7 +150,6 @@
 }
 
 .headerCta {
-  justify-self: end;
   display: inline-flex;
   align-items: center;
   gap: 18px;
@@ -153,6 +164,47 @@
 
 .headerCta:hover {
   color: var(--copper);
+}
+
+.headerActions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 1.7vw, 27px);
+}
+
+.languagePicker {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.languageSelect {
+  width: 104px;
+  min-height: 36px;
+  appearance: none;
+  border: 1px solid rgba(44, 24, 19, 0.24);
+  border-radius: 999px;
+  padding: 0 28px 0 13px;
+  background: rgba(255, 248, 235, 0.7);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 0.68rem;
+  font-weight: 680;
+  letter-spacing: 0.02em;
+}
+
+.languageSelect:hover {
+  border-color: var(--copper);
+}
+
+.languageChevron {
+  position: absolute;
+  right: 11px;
+  color: var(--copper);
+  pointer-events: none;
+  font-size: 0.85rem;
+  line-height: 1;
 }
 
 .menuButton,
@@ -176,7 +228,7 @@
   position: absolute;
   z-index: -1;
   top: 13%;
-  left: -80px;
+  inset-inline-start: -80px;
   width: 210px;
   aspect-ratio: 1;
   border: 1px solid rgba(44, 24, 19, 0.12);
@@ -266,7 +318,7 @@
 
 .hero h1 em {
   display: block;
-  margin-left: clamp(15px, 3vw, 52px);
+  margin-inline-start: clamp(15px, 3vw, 52px);
   font-style: italic;
 }
 
@@ -377,7 +429,7 @@
 .heroSun {
   position: absolute;
   top: -5%;
-  right: -5%;
+  inset-inline-end: -5%;
   width: 43%;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -387,7 +439,8 @@
 
 .heroImageFrame {
   position: absolute;
-  inset: 0 5% 0 0;
+  inset: 0;
+  inset-inline-end: 5%;
   overflow: hidden;
   border-radius: 48% 48% 8px 8px;
   box-shadow: 0 30px 70px rgba(37, 31, 23, 0.14);
@@ -414,7 +467,7 @@
 
 .heroSeal {
   position: absolute;
-  right: -17px;
+  inset-inline-end: -17px;
   bottom: 48px;
   z-index: 4;
   width: 124px;
@@ -456,11 +509,11 @@
 .heroNote {
   position: absolute;
   bottom: 23px;
-  left: -44px;
+  inset-inline-start: -44px;
   z-index: 3;
   min-width: 185px;
   padding: 17px 20px 18px;
-  border-left: 3px solid var(--gold);
+  border-inline-start: 3px solid var(--gold);
   background: rgba(251, 248, 241, 0.94);
   box-shadow: 0 15px 42px rgba(40, 31, 24, 0.12);
   backdrop-filter: blur(8px);
@@ -487,7 +540,7 @@
 .scrollCue {
   position: absolute;
   bottom: 30px;
-  left: clamp(20px, 5.5vw, 88px);
+  inset-inline-start: clamp(20px, 5.5vw, 88px);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -624,7 +677,7 @@
 
 .storyMark {
   position: absolute;
-  right: -0.03em;
+  inset-inline-end: -0.03em;
   bottom: -0.31em;
   color: rgba(196, 23, 14, 0.055);
   font-family: var(--font-display);
@@ -730,7 +783,7 @@
 .productNumber {
   position: absolute;
   top: 17px;
-  left: 17px;
+  inset-inline-start: 17px;
   z-index: 2;
   min-width: 35px;
   height: 35px;
@@ -746,7 +799,7 @@
 
 .productArrow {
   position: absolute;
-  right: 18px;
+  inset-inline-end: 18px;
   bottom: 18px;
   z-index: 2;
   width: 47px;
@@ -761,7 +814,7 @@
 
 .productAction {
   position: absolute;
-  right: 78px;
+  inset-inline-end: 78px;
   bottom: 34px;
   z-index: 2;
   color: white;
@@ -844,7 +897,7 @@
 .imageStatementCopy {
   position: relative;
   z-index: 2;
-  margin-left: clamp(24px, 8vw, 128px);
+  margin-inline-start: clamp(24px, 8vw, 128px);
 }
 
 .imageStatementCopy > p {
@@ -868,11 +921,11 @@
 .imageStatementNote {
   position: absolute;
   z-index: 2;
-  right: clamp(24px, 6vw, 96px);
+  inset-inline-end: clamp(24px, 6vw, 96px);
   bottom: 54px;
   margin: 0;
-  border-left: 1px solid rgba(255, 255, 255, 0.64);
-  padding-left: 18px;
+  border-inline-start: 1px solid rgba(255, 255, 255, 0.64);
+  padding-inline-start: 18px;
   font-family: var(--font-display);
   font-size: 1.03rem;
   font-style: italic;
@@ -897,7 +950,7 @@
   content: "";
   position: absolute;
   top: -30px;
-  left: -30px;
+  inset-inline-start: -30px;
   width: 60%;
   height: 45%;
   border: 1px solid rgba(44, 24, 19, 0.18);
@@ -918,7 +971,7 @@
 
 .craftCaption {
   position: absolute;
-  right: -22px;
+  inset-inline-end: -22px;
   bottom: 0;
   z-index: 2;
   min-width: 210px;
@@ -934,7 +987,7 @@
 .craftFlour {
   position: absolute;
   top: 48%;
-  left: -18px;
+  inset-inline-start: -18px;
   z-index: 2;
   width: 56px;
   height: 56px;
@@ -1035,12 +1088,12 @@
   min-height: 365px;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid rgba(255, 255, 255, 0.22);
+  border-inline-end: 1px solid rgba(255, 255, 255, 0.22);
   padding: 32px clamp(20px, 2.3vw, 36px) 28px;
 }
 
 .valuesGrid article:first-child {
-  border-left: 1px solid rgba(255, 255, 255, 0.22);
+  border-inline-start: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .valueIcon {
@@ -1180,8 +1233,8 @@
 .contactAddress {
   align-self: end;
   justify-self: end;
-  padding-left: 21px;
-  border-left: 1px solid rgba(255, 248, 235, 0.55);
+  padding-inline-start: 21px;
+  border-inline-start: 1px solid rgba(255, 248, 235, 0.55);
 }
 
 .contactAddress > span {
@@ -1214,7 +1267,7 @@
 .contactAddress a span {
   position: absolute;
   top: 0;
-  right: -24px;
+  inset-inline-end: -24px;
   font-family: var(--font-body);
   font-size: 0.75rem;
 }
@@ -1289,6 +1342,84 @@
   outline-color: var(--gold-light);
 }
 
+.rtl {
+  --font-body: "Noto Sans Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
+  --font-display: "Noto Naskh Arabic", "Geeza Pro", "Traditional Arabic",
+    "Segoe UI", Tahoma, Arial, sans-serif;
+  font-family: var(--font-body);
+}
+
+.rtl .topBar,
+.rtl .headerCta,
+.rtl .eyebrow,
+.rtl .heroDetails li,
+.rtl .heroNote span,
+.rtl .scrollCue,
+.rtl .sectionNumber,
+.rtl .underlinedLink,
+.rtl .productAction,
+.rtl .imageStatementCopy > p,
+.rtl .contactAddress > span,
+.rtl .backToTop,
+.rtl .footerBottom,
+.rtl .productCopy h3,
+.rtl .craftCaption span {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.rtl .hero h1,
+.rtl .storyHeading h2,
+.rtl .productsHeader h2,
+.rtl .imageStatement h2,
+.rtl .craftContent h2,
+.rtl .valuesTitle h2,
+.rtl .contactMain h2 {
+  letter-spacing: 0;
+  line-height: 1.1;
+}
+
+.rtl .hero h1 {
+  font-size: clamp(3.8rem, 6.4vw, 7rem);
+}
+
+.rtl .hero h1 em,
+.rtl .storyHeading em,
+.rtl .productsHeader em,
+.rtl .imageStatement em,
+.rtl .craftContent em,
+.rtl .valuesTitle em,
+.rtl .contactMain em,
+.rtl .heroDetails li span,
+.rtl .ticker span,
+.rtl .imageStatementNote,
+.rtl .processList li > span,
+.rtl .contactIntro > p:last-child,
+.rtl .footerTop > p,
+.rtl .mobilePanel > p {
+  font-style: normal;
+}
+
+.rtl .heroSeal text {
+  letter-spacing: 0;
+}
+
+.rtl .primaryButton svg,
+.rtl .underlinedLink svg,
+.rtl .contactButton svg,
+.rtl .productArrow svg,
+.rtl .headerCta span,
+.rtl .textLink span,
+.rtl .contactAddress a span {
+  transform: scaleX(-1);
+}
+
+.rtl .imageStatementShade {
+  background:
+    linear-gradient(270deg, rgba(44, 12, 9, 0.7), rgba(44, 12, 9, 0.08) 72%),
+    linear-gradient(180deg, rgba(44, 12, 9, 0.13), rgba(44, 12, 9, 0.44));
+}
+
 @keyframes riseIn {
   from {
     opacity: 0;
@@ -1329,6 +1460,10 @@
 }
 
 @media (max-width: 1180px) {
+  .headerCta {
+    display: none;
+  }
+
   .heroInner {
     grid-template-columns: minmax(0, 1fr) minmax(410px, 0.8fr);
     gap: 42px;
@@ -1343,7 +1478,8 @@
   }
 
   .storyIntro {
-    grid-template-columns: 120px minmax(350px, 1fr) minmax(280px, 0.72fr);
+    grid-template-columns: 100px minmax(300px, 1fr) minmax(240px, 0.72fr);
+    gap: clamp(20px, 3vw, 42px);
   }
 
   .productGrid {
@@ -1392,7 +1528,7 @@
 
   .contactAddress {
     position: absolute;
-    right: clamp(24px, 6vw, 96px);
+    inset-inline-end: clamp(24px, 6vw, 96px);
     bottom: 48px;
   }
 }
@@ -1408,7 +1544,8 @@
 
   .headerInner {
     height: 71px;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr auto auto;
+    gap: 10px;
   }
 
   .desktopNav,
@@ -1446,7 +1583,7 @@
   .mobilePanel {
     position: absolute;
     top: 71px;
-    left: 0;
+    inset-inline-start: 0;
     width: 100%;
     max-height: 0;
     display: block;
@@ -1459,7 +1596,8 @@
   }
 
   .mobilePanelOpen {
-    max-height: calc(100vh - 71px);
+    max-height: calc(100dvh - 71px);
+    overflow-y: auto;
     opacity: 1;
     visibility: visible;
   }
@@ -1520,11 +1658,11 @@
     width: min(92%, 670px);
     height: min(86vw, 680px);
     min-height: 520px;
-    margin-left: auto;
+    margin-inline-start: auto;
   }
 
   .heroNote {
-    left: -9%;
+    inset-inline-start: -9%;
   }
 
   .scrollCue {
@@ -1546,12 +1684,12 @@
   }
 
   .arabicAccent {
-    margin-left: 0;
+    margin-inline-start: 0;
   }
 
   .storyBody {
     width: min(100%, 560px);
-    margin-left: auto;
+    margin-inline-start: auto;
   }
 
   .storyMark {
@@ -1564,7 +1702,7 @@
   }
 
   .productsHeader > p {
-    margin-left: auto;
+    margin-inline-start: auto;
   }
 
   .imageStatement {
@@ -1578,7 +1716,7 @@
   .craftVisual {
     width: min(88%, 620px);
     min-height: 660px;
-    margin-left: auto;
+    margin-inline-start: auto;
   }
 
   .craftContent {
@@ -1603,7 +1741,7 @@
 
   .contactAddress {
     position: absolute;
-    right: 40px;
+    inset-inline-end: 40px;
     bottom: 45px;
   }
 
@@ -1629,6 +1767,17 @@
     padding-inline: 16px;
   }
 
+  .languageSelect {
+    width: 90px;
+    min-height: 34px;
+    padding-inline: 10px 24px;
+    font-size: 0.63rem;
+  }
+
+  .languageChevron {
+    right: 9px;
+  }
+
   .brandLogo {
     width: 56px;
   }
@@ -1649,7 +1798,7 @@
   }
 
   .hero h1 em {
-    margin-left: 0;
+    margin-inline-start: 0;
   }
 
   .heroLead {
@@ -1687,18 +1836,18 @@
   }
 
   .heroImageFrame {
-    right: 0;
+    inset-inline-end: 0;
   }
 
   .heroSeal {
-    right: -16px;
+    inset-inline-end: -16px;
     bottom: 37px;
     width: 102px;
   }
 
   .heroNote {
     bottom: 11px;
-    left: -5%;
+    inset-inline-start: -5%;
     min-width: 160px;
     padding: 14px 16px;
   }
@@ -1740,7 +1889,7 @@
   }
 
   .storyBody {
-    margin-left: 0;
+    margin-inline-start: 0;
   }
 
   .products {
@@ -1752,7 +1901,7 @@
   }
 
   .productsHeader > p {
-    margin-left: 0;
+    margin-inline-start: 0;
   }
 
   .productGrid {
@@ -1761,8 +1910,8 @@
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
-    margin-right: -18px;
-    padding-right: 18px;
+    margin-inline-end: -18px;
+    padding-inline-end: 18px;
   }
 
   .productGrid::-webkit-scrollbar {
@@ -1808,9 +1957,9 @@
   }
 
   .imageStatementNote {
-    right: auto;
+    inset-inline-end: auto;
     bottom: 28px;
-    left: 20px;
+    inset-inline-start: 20px;
     font-size: 0.92rem;
   }
 
@@ -1827,16 +1976,16 @@
 
   .craftVisual::before {
     top: -18px;
-    left: -18px;
+    inset-inline-start: -18px;
   }
 
   .craftCaption {
-    right: -9%;
+    inset-inline-end: -9%;
     min-width: 175px;
   }
 
   .craftFlour {
-    left: -13px;
+    inset-inline-start: -13px;
   }
 
   .craftLead {
@@ -1860,9 +2009,9 @@
   .valuesGrid article,
   .valuesGrid article:first-child {
     min-height: 290px;
-    border-right: 1px solid rgba(255, 255, 255, 0.22);
+    border-inline-end: 1px solid rgba(255, 255, 255, 0.22);
     border-bottom: 1px solid rgba(255, 255, 255, 0.22);
-    border-left: 1px solid rgba(255, 255, 255, 0.22);
+    border-inline-start: 1px solid rgba(255, 255, 255, 0.22);
   }
 
   .valuesGrid article:last-child {
@@ -1884,11 +2033,11 @@
 
   .contactMain {
     margin-top: 30px;
-    text-align: left;
+    text-align: start;
   }
 
   .contactArabic {
-    margin-left: 0;
+    margin-inline-start: 0;
   }
 
   .contactActions {
@@ -1904,9 +2053,9 @@
   }
 
   .contactAddress {
-    right: auto;
+    inset-inline-end: auto;
     bottom: 54px;
-    left: 20px;
+    inset-inline-start: 20px;
   }
 
   .footer {
