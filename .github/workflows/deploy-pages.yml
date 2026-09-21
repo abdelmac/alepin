@@ -41,7 +41,8 @@ jobs:
         working-directory: alepinweb
         run: npm run build
         env:
-          PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          # alepin-bakery.com serves the site from /, not /alepin.
+          PAGES_BASE_PATH: ""
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4
